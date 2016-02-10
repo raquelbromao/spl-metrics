@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Splmetrics
+Bundle-SymbolicName: plugin.splmetrics; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: plugin.splmetrics.Activator
+Require-Bundle: org.eclipse.ui, 
+ org.eclipse.swt,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.8.1"
+Bundle-ActivationPolicy: lazy

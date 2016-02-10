@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="SPL Metrics"
+            visible="true"
+            id="plugin.splmetrics.actionSet">
+         <menu
+               label="SPL Metrics"
+               id="splMetrics">
+            <separator
+                  name="SPL Metrics">
+            </separator>
+         </menu>
+         <action
+               label="Execute"
+               icon="icons/sample.gif"
+               class="plugin.splmetrics.actions.splMetricsAction"
+               tooltip="Execute"
+               menubarPath="splMetrics/sampleGroup"
+               toolbarPath="splMetrics"
+               id="plugin.splmetrics.actions.numberOfLines">
+         </action>
+         
+      </actionSet>
+   </extension>
+
+</plugin>
