@@ -12,6 +12,10 @@ import org.xml.sax.SAXException;
 
 public class ReadXML {
 	private static Element raiz;
+	private static String pathModelXml;
+	private static String pathFeatureDir;
+	
+	
 	
 	public ReadXML(String file) {
 		try {
@@ -51,5 +55,21 @@ public class ReadXML {
 	
 	public static Element getRaiz() {
 		return raiz;
+	}
+
+	public static String getPathModelXml() {
+		return pathModelXml;
+	}
+
+	public static void setPathModelXml(String pathModelXml) {
+		ReadXML.pathModelXml = pathModelXml;
+	}
+
+	public static String getPathFeatureDir() {
+		return pathFeatureDir;
+	}
+
+	public static void setPathFeatureDir(String pathFeatureDir) {
+		ReadXML.pathFeatureDir = pathFeatureDir;
 	}
 }

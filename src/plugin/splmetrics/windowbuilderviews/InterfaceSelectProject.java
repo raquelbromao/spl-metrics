@@ -45,17 +45,17 @@ public class InterfaceSelectProject {
 	 */
 	protected void createContents() {
 		shlSplMetricsSelect = new Shell();
-		shlSplMetricsSelect.setSize(391, 197);
+		shlSplMetricsSelect.setSize(348, 197);
 		shlSplMetricsSelect.setText("SPL Metrics: Select the Project");
 		shlSplMetricsSelect.setLayout(null);
 		
 		Label lblPleaseSelectThe = new Label(shlSplMetricsSelect, SWT.NONE);
 		lblPleaseSelectThe.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.NORMAL));
-		lblPleaseSelectThe.setBounds(44, 21, 298, 15);
+		lblPleaseSelectThe.setBounds(25, 20, 287, 26);
 		lblPleaseSelectThe.setText("Please, select the project to compute the metrics!");
 		
 		Composite composite = new Composite(shlSplMetricsSelect, SWT.NONE);
-		composite.setBounds(29, 52, 313, 45);
+		composite.setBounds(10, 52, 313, 45);
 		
 		Label lblProject = new Label(composite, SWT.NONE);
 		lblProject.setBounds(16, 13, 55, 15);
@@ -65,7 +65,7 @@ public class InterfaceSelectProject {
 		combo.setBounds(77, 10, 226, 23);
 		
 		Composite composite_1 = new Composite(shlSplMetricsSelect, SWT.NONE);
-		composite_1.setBounds(168, 103, 174, 45);
+		composite_1.setBounds(148, 103, 174, 45);
 		
 		Button btnApply = new Button(composite_1, SWT.NONE);
 		btnApply.setSelection(true);

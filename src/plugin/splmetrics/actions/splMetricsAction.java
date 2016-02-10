@@ -1,5 +1,7 @@
 package plugin.splmetrics.actions;
 
+import java.io.File;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.IAction;
@@ -11,12 +13,14 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import plugin.splmetrics.main.Main;
+import plugin.splmetrics.main.ReadXML;
 
 /**
  * Our sample action implements workbench action delegate. The action proxy will
@@ -65,11 +69,11 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 		
 		Label lblPleaseSelectThe = new Label(shlSplMetricsSelect, SWT.NONE);
 		lblPleaseSelectThe.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.NORMAL));
-		lblPleaseSelectThe.setBounds(44, 21, 298, 15);
+		lblPleaseSelectThe.setBounds(25, 20, 287, 26);
 		lblPleaseSelectThe.setText("Please, select the project to compute the metrics!");
 		
 		Composite composite = new Composite(shlSplMetricsSelect, SWT.NONE);
-		composite.setBounds(29, 52, 313, 45);
+		composite.setBounds(10, 52, 313, 45);
 		
 		Label lblProject = new Label(composite, SWT.NONE);
 		lblProject.setBounds(16, 13, 55, 15);
@@ -78,6 +82,7 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 		Combo combo = new Combo(composite, SWT.NONE);
 		combo.setBounds(77, 10, 226, 23);
 		
+		// Gets all projects from workspace
 		IProject[] projects = getProjects();
 
 		for (int i = 0; i < projects.length; i++) {
@@ -86,9 +91,9 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 
 		combo.select(0);
 		
-		
 		Composite composite_1 = new Composite(shlSplMetricsSelect, SWT.NONE);
-		composite_1.setBounds(168, 103, 174, 45);
+		composite_1.setBounds(148, 103, 174, 45);
+		
 		
 		Button btnApply = new Button(composite_1, SWT.NONE);
 		btnApply.setSelection(true);
@@ -104,10 +109,24 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 
 		btnApply.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-
-				String pathModelXml = "C:/Users/fsdia/Dropbox/Programming/runtime-EclipseApplication/"
-						+ combo.getItem(combo.getSelectionIndex()) + "/model.xml";
-				Main.execute(pathModelXml);
+				String pathWorkspace = "C:/Users/fsdia/Dropbox/Programming/runtime-EclipseApplication/";
+				
+				ReadXML.setPathModelXml(pathWorkspace + combo.getItem(combo.getSelectionIndex()) + "/model.xml");
+				ReadXML.setPathFeatureDir(pathWorkspace + combo.getItem(combo.getSelectionIndex()) + "/features");
+				
+				File fModelXml = new File(ReadXML.getPathModelXml()); 
+				if (fModelXml.exists()) {
+					File fFeatureDir = new File(ReadXML.getPathFeatureDir());
+					
+					if (fFeatureDir.exists() && fFeatureDir.isDirectory()) {
+						Main.execute(ReadXML.getPathModelXml());
+					} else {
+						errorSpl("NOT_EXISTS_DIR_FEATURES");
+					}
+				} else {
+					errorSpl("NOT_EXISTS_XML");
+				}
+				
 			}
 		});
 
@@ -120,6 +139,20 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 		
 	}
 	
+	public void errorSpl(String code) {
+		int style = SWT.ICON_ERROR;
+	    
+	    MessageBox messageBox = new MessageBox(shlSplMetricsSelect, style);
+	    
+	    if(code == "NOT_EXISTS_XML") {
+		    messageBox.setMessage("File 'model.xml' not exists in this project!");	    	
+	    } else if (code == "NOT_EXISTS_DIR_FEATURES") {
+	    	messageBox.setMessage("Directory '/features' not exists in this project!");	    	
+	    }
+
+	    int rc = messageBox.open();
+
+	}
 	
 	/**
 	 * @wbp.parser.entryPoint
