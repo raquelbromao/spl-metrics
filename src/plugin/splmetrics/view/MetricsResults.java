@@ -17,6 +17,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import plugin.splmetrics.algmetrics.DIT;
 import plugin.splmetrics.algmetrics.NoF;
+import plugin.splmetrics.algmetrics.nor.NoR;
 
 public class MetricsResults {
 
@@ -145,6 +146,10 @@ public class MetricsResults {
 		tree.setLinesVisible(true);
 		tree.setHeaderVisible(true);
 		tbtmNewItem_1.setControl(tree);
+
+		TreeColumn trclmnClassName = new TreeColumn(tree, SWT.NONE);
+		trclmnClassName.setWidth(100);
+		trclmnClassName.setText("Class Name");
 		
 		TreeColumn trclmnFeatureName = new TreeColumn(tree, SWT.NONE);
 		trclmnFeatureName.setWidth(200);
@@ -153,36 +158,22 @@ public class MetricsResults {
 		TreeColumn trclmnNor = new TreeColumn(tree, SWT.NONE);
 		trclmnNor.setWidth(100);
 		trclmnNor.setText("NoR");
-		
-		TreeItem trtmNewTreeitem = new TreeItem(tree, SWT.NONE);
-		trtmNewTreeitem.setText("New TreeItem");
-		
-		TreeItem trtmNewTreeitem_2 = new TreeItem(trtmNewTreeitem, SWT.NONE);
-		trtmNewTreeitem_2.setText("New TreeItem");
-		
-		TreeItem trtmNewTreeitem_3 = new TreeItem(trtmNewTreeitem_2, SWT.NONE);
-		trtmNewTreeitem_3.setText("New TreeItem");
-		
-		TreeItem trtmNewTreeitem_5 = new TreeItem(trtmNewTreeitem_2, SWT.NONE);
-		trtmNewTreeitem_5.setText("New TreeItem");
-		
-		TreeItem trtmNewTreeitem_6 = new TreeItem(trtmNewTreeitem_5, SWT.NONE);
-		trtmNewTreeitem_6.setText("New TreeItem");
-		trtmNewTreeitem_5.setExpanded(true);
-		
-		TreeItem trtmNewTreeitem_7 = new TreeItem(trtmNewTreeitem_2, SWT.NONE);
-		trtmNewTreeitem_7.setText("New TreeItem");
-		trtmNewTreeitem_2.setExpanded(true);
-		
-		TreeItem trtmNewTreeitem_8 = new TreeItem(trtmNewTreeitem, SWT.NONE);
-		trtmNewTreeitem_8.setText("New TreeItem");
-		
-		TreeItem trtmNewTreeitem_4 = new TreeItem(trtmNewTreeitem, SWT.NONE);
-		trtmNewTreeitem_4.setText("New TreeItem");
-		trtmNewTreeitem.setExpanded(true);
-		
-		TreeItem trtmNewTreeitem_1 = new TreeItem(tree, SWT.NONE);
-		trtmNewTreeitem_1.setText("New TreeItem");
+	      
+        for (int i = 0; i < NoR.getRefinesObjs().size(); i++) {
+        	TreeItem trtmNewTreeItem = new TreeItem(tree, SWT.NONE);
+        	
+        	if (NoR.getRefinesObjs().get(i).getNumRefines() > 0) {
+	        	trtmNewTreeItem.setText(0, NoR.getRefinesObjs().get(i).getNameClass());
+	        	trtmNewTreeItem.setText(1, NoR.getRefinesObjs().get(i).getFeatureName());
+	        	trtmNewTreeItem.setText(2, String.valueOf(NoR.getRefinesObjs().get(i).getNumRefines()));
+	        	
+	        	for(int j = 0; j < NoR.getRefinesObjs().get(i).getRefinesClasses().size(); j++) {
+	        		TreeItem trtmNewTreeSubItem = new TreeItem(trtmNewTreeItem, SWT.NONE);
+	        		trtmNewTreeSubItem.setText(0, NoR.getRefinesObjs().get(i).getRefinesClasses().get(j).getNameClass());
+	        		trtmNewTreeSubItem.setText(1, NoR.getRefinesObjs().get(i).getRefinesClasses().get(j).getFeatureName());
+	        	}
+        	}
+        }
 	}
 
 	public void recebeDados() {
