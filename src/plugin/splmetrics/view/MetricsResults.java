@@ -160,9 +160,9 @@ public class MetricsResults {
 		trclmnNor.setText("NoR");
 	      
         for (int i = 0; i < NoR.getRefinesObjs().size(); i++) {
-        	TreeItem trtmNewTreeItem = new TreeItem(tree, SWT.NONE);
-        	
         	if (NoR.getRefinesObjs().get(i).getNumRefines() > 0) {
+        		TreeItem trtmNewTreeItem = new TreeItem(tree, SWT.NONE);
+        	
 	        	trtmNewTreeItem.setText(0, NoR.getRefinesObjs().get(i).getNameClass());
 	        	trtmNewTreeItem.setText(1, NoR.getRefinesObjs().get(i).getFeatureName());
 	        	trtmNewTreeItem.setText(2, String.valueOf(NoR.getRefinesObjs().get(i).getNumRefines()));
