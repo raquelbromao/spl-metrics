@@ -76,6 +76,7 @@ public class DIT {
 
 		return dit;
 	}
+	
 	public static void execute() {
 		DIT.setDit(ReadXML.getRaiz());
 

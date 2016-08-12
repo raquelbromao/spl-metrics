@@ -23,22 +23,25 @@ import plugin.splmetrics.main.Main;
 import plugin.splmetrics.main.ReadXML;
 
 /**
- * Our sample action implements workbench action delegate. The action proxy will
- * be created by the workbench and shown in the UI. When the user tries to use
- * the action, this delegate will be created and execution will be delegated to
- * it.
+ * Essa classe implementa uma ação de delegação da workbench.
+ * O proxy ação será criado pela workbench e mostrado na interface do usuário. 
+ * Quando o usuário tenta usar a ação, esta delegação será criada e execuções 
+ * serão delegadas a ele.
  * 
  * @see IWorkbenchWindowActionDelegate
  */
 public class splMetricsAction implements IWorkbenchWindowActionDelegate {
+	/**
+	 * vARIÁVEIS DA CLASSE
+	 */
 	private IWorkbenchWindow window;
-
 	public Shell shlSplMetricsSelect;
-
 	private static final String nol_ACTION = "plugin.splmetrics.actions.numberOfLines";
 
 	/**
-	 * The constructor.
+	 * O construtor da classe
+	 * O comentário abaixo não pode ser retirado, pois indica o ponto de entrada do WBP
+	 * WBP -> Windows Builder Plugin
 	 * @wbp.parser.entryPoint
 	 */
 	public splMetricsAction() {
@@ -50,10 +53,9 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 	 * 
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
-
 	public IProject[] getProjects() {
 		/**
-		 * Lista os projetos da Workspace em utilizaÃ§Ã£o
+		 * Lista os projetos da Workspace em utilização
 		 */
 		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 
@@ -109,7 +111,7 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 
 		btnApply.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-				String pathWorkspace = "C:/Users/fsdia/Dropbox/Programming/runtime-EclipseApplication/";
+				String pathWorkspace = "C:/Users/Romao/workspace/";
 				
 				ReadXML.setPathModelXml(pathWorkspace + combo.getItem(combo.getSelectionIndex()) + "/model.xml");
 				ReadXML.setPathFeatureDir(pathWorkspace + combo.getItem(combo.getSelectionIndex()) + "/features");

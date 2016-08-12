@@ -1,4 +1,5 @@
 package plugin.splmetrics.windowbuilderviews;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;

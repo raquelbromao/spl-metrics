@@ -3,6 +3,7 @@ package plugin.splmetrics.main;
 import plugin.splmetrics.algmetrics.DIT;
 import plugin.splmetrics.algmetrics.NoF;
 import plugin.splmetrics.algmetrics.nor.NoR;
+import plugin.splmetrics.algmetrics.messagechain.GetInfo;
 import plugin.splmetrics.view.MetricsResults;
 
 public class Main {
@@ -12,6 +13,7 @@ public class Main {
 		NoF.execute();
 		DIT.execute();
 		NoR.execute();
+		MessageChain.execute();
 		
 		MetricsResults mr = new MetricsResults();
 		mr.recebeDados();
@@ -19,5 +21,6 @@ public class Main {
 		NoF.reset();
 		DIT.reset();
 		NoR.reset();
+		//MessageChain.execute();
 	}
 }
