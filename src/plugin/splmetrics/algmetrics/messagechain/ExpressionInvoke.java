@@ -9,7 +9,7 @@ import org.eclipse.jdt.core.dom.ExpressionStatement;
 public class ExpressionInvoke extends ASTVisitor {
 
 	List<ExpressionStatement> methods = new ArrayList<ExpressionStatement>();
-s
+
 	@Override
 	public boolean visit(ExpressionStatement node) {
 		methods.add(node);
