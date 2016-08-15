@@ -111,7 +111,8 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 
 		btnApply.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-				String pathWorkspace = "C:/Users/Romao/workspace/";
+				//String pathWorkspace = "C:/Users/Romao/workspace/";
+				String pathWorkspace = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 				
 				ReadXML.setPathModelXml(pathWorkspace + combo.getItem(combo.getSelectionIndex()) + "/model.xml");
 				ReadXML.setPathFeatureDir(pathWorkspace + combo.getItem(combo.getSelectionIndex()) + "/features");
@@ -150,6 +151,8 @@ public class splMetricsAction implements IWorkbenchWindowActionDelegate {
 		    messageBox.setMessage("File 'model.xml' not exists in this project!");	    	
 	    } else if (code == "NOT_EXISTS_DIR_FEATURES") {
 	    	messageBox.setMessage("Directory '/features' not exists in this project!");	    	
+	    } else if (code == 'NOT_EXISTS_SRCJAVA') {
+	    	messageBox.setMessage("Directory '/src' not exists in this project!");
 	    }
 
 	    int rc = messageBox.open();
