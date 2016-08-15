@@ -13,7 +13,7 @@ public class Main {
 		NoF.execute();
 		DIT.execute();
 		NoR.execute();
-		MessageChain.execute();
+		//MessageChain.execute();
 		
 		MetricsResults mr = new MetricsResults();
 		mr.recebeDados();
